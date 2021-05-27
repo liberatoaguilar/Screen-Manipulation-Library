@@ -20,7 +20,7 @@ private:
 
 public:
     // Constructor, x and y begin at 0
-    Screen() : x(0), y(0) {}
+    Screen() : x(0), y(0) { this->home(); }
 
     // Getters
     int getX() const { return this->x; }
