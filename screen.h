@@ -56,8 +56,9 @@ public:
     void setColor(string color);
     void setColor(unsigned int id);
 
-    // cout wrapper
+    // cout wrappers
     void print(string mess) const { cout << mess; }
+    void print(char mess) const { cout << mess; }
 
 };
 

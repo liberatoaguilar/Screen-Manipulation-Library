@@ -75,7 +75,7 @@ bool Screen::testMode(string mode)
             || mode == MODES::BLINKING
             || mode == MODES::INVERSE
             || mode == MODES::INVISIBLE
-            || mode == MODES::STRIKETHROUGH)
+            || mode == MODES::STRIKETHROUGH);
 }
 
 /* Set mode if valid 
@@ -109,12 +109,12 @@ bool Screen::testColor(string color)
             || color == COLORS::BG::MAGENTA
             || color == COLORS::BG::CYAN
             || color == COLORS::BG::WHITE
-            || color == COLORS::RESET)
+            || color == COLORS::RESET);
 }
 
 /* Sets color if valid
  * Precondition := valid color */
-void setColor(string color)
+void Screen::setColor(string color)
 {
     if (testColor(color))
     {
