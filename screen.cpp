@@ -13,8 +13,9 @@ void Screen::setPos(unsigned int x, unsigned int y)
     // TODO test for invalid
     this->x = x;
     this->y = y;
-    cout << "\033["+to_string(x)+";"
-            +to_string(y)+";"+";H";    
+    // Row = y, Col = x
+    cout << "\033["+to_string(y)+";"
+            +to_string(x)+";"+";H";    
 }
 
 /* Moves the cursor num lines up 

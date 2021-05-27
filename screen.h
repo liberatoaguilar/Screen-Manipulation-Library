@@ -23,8 +23,8 @@ public:
     Screen() : x(0), y(0) { this->home(); }
 
     // Getters
-    int getX() const { return this->x; }
-    int getY() const { return this->y; }
+    unsigned int getX() const { return this->x; }
+    unsigned int getY() const { return this->y; }
     // Go to (0, 0)
     void home() const { cout << "\033[H"; }
     // Save and restore cursor position
