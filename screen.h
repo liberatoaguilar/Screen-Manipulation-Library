@@ -14,9 +14,6 @@ private:
     // x and y keep track of cursor position
     unsigned int x;
     unsigned int y;
-    // size_x and size_y are the window size;
-    unsigned int size_x;
-    unsigned int size_y;
     // internal tests for mode/color validation
     bool testMode(string mode);
     bool testColor(string color);
@@ -24,6 +21,7 @@ private:
 public:
     // Constructor, x and y begin at 0
     Screen();
+    ~Screen(); 
 
     // Getters
     unsigned int getX() const { return this->x; }

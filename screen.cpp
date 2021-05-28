@@ -10,6 +10,14 @@ using std::to_string;
 Screen::Screen() : x(1), y(1)
 {
     this->home();
+    this->clear();
+}
+
+Screen::~Screen()
+{
+    this->setMode(MODES::RESET);
+    this->clear();
+    this->home();
 }
 
 /* Sets the x and y position of the cursor
