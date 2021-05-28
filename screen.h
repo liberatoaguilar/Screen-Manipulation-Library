@@ -26,7 +26,7 @@ public:
     // Getters
     unsigned int getX() const { return this->x; }
     unsigned int getY() const { return this->y; }
-    // Go to (0, 0)
+    // Go to (1, 1)
     void home() const { cout << "\033[H"; }
     // Save and restore cursor position
     void savePos() const { cout <<  "\033[s"; }
