@@ -18,6 +18,7 @@ Screen::~Screen()
     this->setMode(MODES::RESET);
     this->clear();
     this->home();
+    this->showCursor();
 }
 
 /* Sets the x and y position of the cursor
