@@ -14,13 +14,16 @@ private:
     // x and y keep track of cursor position
     unsigned int x;
     unsigned int y;
+    // size_x and size_y are the window size;
+    unsigned int size_x;
+    unsigned int size_y;
     // internal tests for mode/color validation
     bool testMode(string mode);
     bool testColor(string color);
 
 public:
     // Constructor, x and y begin at 0
-    Screen() : x(0), y(0) { this->home(); }
+    Screen();
 
     // Getters
     unsigned int getX() const { return this->x; }
@@ -55,6 +58,7 @@ public:
     void setMode(string mode);
     void setColor(string color);
     void setColor(unsigned int id);
+    string getTruePos();
 
     // cout wrappers
     void print(string mess) const { cout << mess; }

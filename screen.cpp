@@ -3,8 +3,14 @@
 #include "screen.h"
 
 using std::cout;
+using std::cin;
 using std::string;
 using std::to_string;
+
+Screen::Screen() : x(1), y(1)
+{
+    this->home();
+}
 
 /* Sets the x and y position of the cursor
  * Precondition := x and y are in bounds */
@@ -127,7 +133,7 @@ void Screen::setColor(string color)
 
 /* Sets color from id 
  * Precondition := valid id (0-255) */
-void setColor(unsigned int id)
+void Screen::setColor(unsigned int id)
 {
     if (id <= COLORS::ID_MAX)
     {
@@ -135,5 +141,13 @@ void setColor(unsigned int id)
     } else {
         throw std::runtime_error("Invalid color id");
     }
+}
+
+string Screen::getTruePos()
+{
+    cout << "\033[6n";
+    string pos;
+    cin >> pos;
+    return pos;
 }
 
