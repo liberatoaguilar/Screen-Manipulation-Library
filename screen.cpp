@@ -36,6 +36,7 @@ void Screen::configDimensions()
     int height;
     posSS >> bracket >> height >> semi >> width;
     this->width = width;
+    // Most terminals will auto scroll when writing to the last line
     this->height = height;
 }
 

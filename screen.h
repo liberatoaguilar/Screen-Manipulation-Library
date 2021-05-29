@@ -67,6 +67,7 @@ public:
     // cout wrappers
     void print(string mess) const { cout << mess; }
     void print(char mess) const { cout << mess; }
+    void flush() const { cout << std::flush; }
 
 };
 
