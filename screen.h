@@ -14,9 +14,14 @@ private:
     // x and y keep track of cursor position
     unsigned int x;
     unsigned int y;
+    // window width and height
+    unsigned int width;
+    unsigned int height;
     // internal tests for mode/color validation
     bool testMode(string mode);
     bool testColor(string color);
+    // get window dimensions
+    void configDimensions();
 
 public:
     // Constructor, x and y begin at 0
@@ -26,8 +31,8 @@ public:
     // Getters
     unsigned int getX() const { return this->x; }
     unsigned int getY() const { return this->y; }
-    // Go to (1, 1)
-    void home() const { cout << "\033[H"; }
+    unsigned int getWidth() const { return this->width; }
+    unsigned int getHeight() const { return this->height; }
     // Save and restore cursor position
     void savePos() const { cout <<  "\033[s"; }
     void restorePos() const { cout <<  "\033[u"; }
@@ -48,6 +53,7 @@ public:
     void showCursor() const { cout <<  "\033[?25h"; }
     
     // Detailed in screen.cpp
+    void home();
     void setPos(unsigned int x, unsigned int y);
     void up(unsigned int num);
     void down(unsigned int num);

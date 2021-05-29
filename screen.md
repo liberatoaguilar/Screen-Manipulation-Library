@@ -20,7 +20,7 @@
             * Doesn't work
         * `string getTruePos()` _ESC[6n_
             * returns _ESC[#;#R_
-            * _TODO_
+            * Actually _[#;#_
         * `int getX()`
         * `int getY()`
         * `savePos()` _ESC[s_

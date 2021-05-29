@@ -1,14 +1,17 @@
 #include <iostream>
 #include <string>
+#include <sstream>
 #include "screen.h"
 
 using std::cout;
 using std::cin;
 using std::string;
 using std::to_string;
+using std::istringstream;
 
 Screen::Screen() : x(1), y(1)
 {
+    this->configDimensions();
     this->home();
     this->clear();
 }
@@ -16,21 +19,41 @@ Screen::Screen() : x(1), y(1)
 Screen::~Screen()
 {
     this->setMode(MODES::RESET);
-    this->clear();
-    this->home();
     this->showCursor();
+}
+
+/* Gets window dimensions */
+void Screen::configDimensions()
+{
+    // Get window dimensions
+    this->setPos(999,999);
+    string pos = this->getTruePos();
+    istringstream posSS(pos);
+    // Format returned is "[#;#"
+    char bracket;
+    int width;
+    char semi;
+    int height;
+    posSS >> bracket >> height >> semi >> width;
+    this->width = width;
+    this->height = height;
 }
 
 /* Sets the x and y position of the cursor
  * Precondition := x and y are in bounds */
 void Screen::setPos(unsigned int x, unsigned int y)
 {
-    // TODO test for invalid
-    this->x = x;
-    this->y = y;
-    // Row = y, Col = x
-    cout << "\033["+to_string(y)+";"
-            +to_string(x)+";"+";H";    
+    if (x >= 1 && x <= this->width
+            && y >= 1 && y <= this->height)
+    {
+        this->x = x;
+        this->y = y;
+        // Row = y, Col = x
+        cout << "\033["+to_string(y)+";"
+                +to_string(x)+";"+";H";    
+    } else {
+        throw std::runtime_error("Out of bounds (x, y)");
+    }
 }
 
 /* Moves the cursor num lines up 
@@ -52,18 +75,26 @@ void Screen::up(unsigned int num)
  * Precondition := Must be in bounds (<=window size) */
 void Screen::down(unsigned int num)
 {
-    // TODO Implement test
-    this->y += num;
-    cout << "\033["+to_string(num)+"B";
+    if (this->y + num <= this->height)
+    {
+        this->y += num;
+        cout << "\033["+to_string(num)+"B";
+    } else {
+        throw std::runtime_error("Out of bounds (down)");
+    }
 }
 
 /* Moves the cursor num columns to the right
  * Precondition := Must be in bounds (<=window size) */
 void Screen::right(unsigned int num)
 {
-    // TODO Implement test
-    this->x += num;
-    cout << "\033["+to_string(num)+"C";
+    if (this->x + num <= this->width)
+    {
+        this->x += num;
+        cout << "\033["+to_string(num)+"C";
+    } else {
+        throw std::runtime_error("Out of bounds (right)");
+    }
 }
 
 /* Moves the cursor num columns to the left
@@ -152,11 +183,37 @@ void Screen::setColor(unsigned int id)
     }
 }
 
+/* Gets string with cursor position
+ * Modified from:
+ * https://www.tutorialspoint.com/Read-a-character-from-standard-input-without-waiting-for-a-newline-in-Cplusplus */
 string Screen::getTruePos()
 {
+    // Output ANSI code
     cout << "\033[6n";
+    // To avoid pressing Enter
+    system("stty raw");
+    // Ignore escape character
+    char esc;
+    cin >> esc;
+
     string pos;
-    cin >> pos;
+    char c;
+    while(true) {
+        cin >> c;
+        if(c == 'R') { // Last character returned
+            system("stty cooked");
+            break;
+        }  
+        pos += c; // Append to string
+    }
+    // Format is "[#;#"
     return pos;
 }
 
+/* Go to (1, 1) */
+void Screen::home()
+{
+    this->x = 1;
+    this->y = 1;
+    cout << "\033[H";
+}
