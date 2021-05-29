@@ -71,6 +71,12 @@ public:
     void print(char mess);
     void flush() const { cout << std::flush; }
 
+    // System cooked or raw
+    // Print mode
+    void setPrint() const { system("stty cooked"); }
+    // Listen for key mode
+    void setListen() const { system("stty raw"); }
+
 };
 
 #endif
