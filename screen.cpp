@@ -264,3 +264,15 @@ unsigned int Screen::getY()
     this->y = y;
     return this->y;
 }
+
+void Screen::print(char mess)
+{
+    cout << mess;
+    this->left(1);
+}
+
+void Screen::print(string mess)
+{
+    cout << mess;
+    this->left(mess.length());
+}

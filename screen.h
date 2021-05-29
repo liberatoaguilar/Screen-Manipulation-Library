@@ -42,6 +42,8 @@ public:
     void clearDown() const { cout <<  "\033[0J"; }
     // Clears from the cursor up
     void clearUp() const { cout <<  "\033[1J"; }
+    // Similar to clear, use when clear() doesn't
+    void forceClear() const { cout << "\033[2J"; }
     // Clears entire line
     void clearLine() const { cout <<  "\033[K"; }
     // Clear from cursor to end of line
@@ -65,8 +67,8 @@ public:
     string getTruePos();
 
     // cout wrappers
-    void print(string mess) const { cout << mess; }
-    void print(char mess) const { cout << mess; }
+    void print(string mess);
+    void print(char mess);
     void flush() const { cout << std::flush; }
 
 };
