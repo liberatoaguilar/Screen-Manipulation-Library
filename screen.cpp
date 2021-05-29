@@ -219,6 +219,8 @@ void Screen::home()
     cout << "\033[H";
 }
 
+/* Gets x position from terminal
+ * Silently updates y position too */
 unsigned int Screen::getX()
 {
     string pos = this->getTruePos();
@@ -229,11 +231,14 @@ unsigned int Screen::getX()
     char semi;
     int y;
     posSS >> bracket >> y >> semi >> x;
+    // Update both x and y
     this->x = x;
     this->y = y;
     return this->x;
 }
 
+/* Gets y position from terminal
+ * Silently updates x position too */
 unsigned int Screen::getY()
 {
     string pos = this->getTruePos();
@@ -244,6 +249,7 @@ unsigned int Screen::getY()
     char semi;
     int y;
     posSS >> bracket >> y >> semi >> x;
+    // Update both x and y
     this->x = x;
     this->y = y;
     return this->y;
