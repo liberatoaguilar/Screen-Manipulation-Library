@@ -57,11 +57,11 @@ void Screen::setPos(unsigned int x, unsigned int y)
 }
 
 /* Moves the cursor num lines up 
- * Precondition := Must be in bounds (>=0) */
+ * Precondition := Must be in bounds (>=1) */
 void Screen::up(unsigned int num)
 {
     if ((static_cast<int>(this->y) 
-                - static_cast<int>(num)) >= 0) 
+                - static_cast<int>(num)) >= 1) 
     {
         this->y -= num;
         cout << "\033["+to_string(num)+"A";
@@ -98,11 +98,11 @@ void Screen::right(unsigned int num)
 }
 
 /* Moves the cursor num columns to the left
- * Precondition := Must be in bounds (<=0) */
+ * Precondition := Must be in bounds (<=1) */
 void Screen::left(unsigned int num)
 {
     if ((static_cast<int>(this->x) 
-                - static_cast<int>(num)) >= 0) 
+                - static_cast<int>(num)) >= 1) 
     {
         this->x -= num;
         cout << "\033["+to_string(num)+"D";
