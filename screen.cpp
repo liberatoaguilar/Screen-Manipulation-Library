@@ -218,3 +218,33 @@ void Screen::home()
     this->y = 1;
     cout << "\033[H";
 }
+
+unsigned int Screen::getX()
+{
+    string pos = this->getTruePos();
+    istringstream posSS(pos);
+    // Format returned is "[#;#"
+    char bracket;
+    int x;
+    char semi;
+    int y;
+    posSS >> bracket >> y >> semi >> x;
+    this->x = x;
+    this->y = y;
+    return this->x;
+}
+
+unsigned int Screen::getY()
+{
+    string pos = this->getTruePos();
+    istringstream posSS(pos);
+    // Format returned is "[#;#"
+    char bracket;
+    int x;
+    char semi;
+    int y;
+    posSS >> bracket >> y >> semi >> x;
+    this->x = x;
+    this->y = y;
+    return this->y;
+}

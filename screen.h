@@ -29,8 +29,8 @@ public:
     ~Screen(); 
 
     // Getters
-    unsigned int getX() const { return this->x; }
-    unsigned int getY() const { return this->y; }
+    unsigned int getX();
+    unsigned int getY();
     unsigned int getWidth() const { return this->width; }
     unsigned int getHeight() const { return this->height; }
     // Save and restore cursor position
