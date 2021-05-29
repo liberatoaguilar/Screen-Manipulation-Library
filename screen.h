@@ -1,5 +1,5 @@
-#ifndef _SOMETHING
-#define _SOMETHING
+#ifndef _SCREEN
+#define _SCREEN
 
 #include <iostream>
 #include <string>
