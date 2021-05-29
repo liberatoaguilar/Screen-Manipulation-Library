@@ -45,5 +45,9 @@ int main()
 {
     Screen s;
     drawLoad(s);
+    s.up(s.getHeight()/2);
+    s.right(s.getWidth()/2);
+    s.print("HELLO\n");
+    s.down(s.getHeight()/2-1);
     return 0;
 }
