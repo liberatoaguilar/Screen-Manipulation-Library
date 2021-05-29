@@ -44,6 +44,8 @@ void Screen::configDimensions()
  * Precondition := x and y are in bounds */
 void Screen::setPos(unsigned int x, unsigned int y)
 {
+    // Update positions
+    this->getX();
     if (x >= 1 && x <= this->width
             && y >= 1 && y <= this->height)
     {
@@ -61,6 +63,8 @@ void Screen::setPos(unsigned int x, unsigned int y)
  * Precondition := Must be in bounds (>=1) */
 void Screen::up(unsigned int num)
 {
+    // Update positions
+    this->getX();
     if ((static_cast<int>(this->y) 
                 - static_cast<int>(num)) >= 1) 
     {
@@ -76,6 +80,8 @@ void Screen::up(unsigned int num)
  * Precondition := Must be in bounds (<=window size) */
 void Screen::down(unsigned int num)
 {
+    // Update positions
+    this->getX();
     if (this->y + num <= this->height)
     {
         this->y += num;
@@ -89,6 +95,8 @@ void Screen::down(unsigned int num)
  * Precondition := Must be in bounds (<=window size) */
 void Screen::right(unsigned int num)
 {
+    // Update positions
+    this->getX();
     if (this->x + num <= this->width)
     {
         this->x += num;
@@ -102,6 +110,8 @@ void Screen::right(unsigned int num)
  * Precondition := Must be in bounds (<=1) */
 void Screen::left(unsigned int num)
 {
+    // Update positions
+    this->getX();
     if ((static_cast<int>(this->x) 
                 - static_cast<int>(num)) >= 1) 
     {
